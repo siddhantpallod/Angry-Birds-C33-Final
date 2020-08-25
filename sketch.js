@@ -78,6 +78,7 @@ function draw(){
     platform.display();
     //log6.display();
     slingshot.display();    
+   
 }
 
 function mouseDragged(){
@@ -92,9 +93,14 @@ function mouseReleased(){
     gameState = "launched";
 }
 
+
 function keyPressed(){
-    if(keyCode === 32){
-       slingshot.attach(bird.body);
+    if(keyCode === 32 && bird.body.speed < 0.5){
+        bird.trajectory = [];
+        Matter.Body.setPosition(bird.body,{x:200,y:50});
+        Matter.Body.setAngle(bird.body,0)
+        slingshot.attach(bird.body);
+       
     }
 }
 
